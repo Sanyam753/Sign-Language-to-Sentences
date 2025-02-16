@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Live Video Feed</title>
+    <style>
+      body { font-family: Arial, sans-serif; text-align: center; }
+      #detectionText {
+          margin-top: 10px;
+          font-size: 20px;
+          font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Live Video Feed</h1>
+    <img id="liveVideo" src="{{ url_for('live_stream') }}" width="640" height="480">
+    <div id="detectionText"></div>
+    
+    <script>
+      function fetchDetectionText() {
+        fetch("{{ url_for('detection_text') }}")
+          .then(response => response.json())
+          .then(data => {
+            document.getElementById("detectionText").innerText = data.text;
+          });
+      }
+      setInterval(fetchDetectionText, 1000);
+    </script>
+  </body>
+</html>
