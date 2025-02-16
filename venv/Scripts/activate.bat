@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\baner\Sign-Language-to-Sentences\venv
+set VIRTUAL_ENV=C:\Users\aksha\Desktop\sign language to sentences\Sign-Language-to-Sentences\venv
 
 if not defined PROMPT set PROMPT=$P$G
 

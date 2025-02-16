@@ -1,0 +1,6 @@
+Flask
+opencv-python
+tensorflow
+numpy
+werkzeug
+moviepy
