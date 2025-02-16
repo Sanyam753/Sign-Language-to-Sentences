@@ -92,7 +92,7 @@ model.add(Dense(32, activation='relu'))
 model.add(Dense(actions.shape[0], activation='softmax'))
 
 model.compile(optimizer='Adam', loss='categorical_crossentropy', metrics=['categorical_accuracy'])
-model.load_weights('D:/Flask project/model/action.h5')
+model.load_weights(r'C:\Users\anshu\OneDrive\Documents\Web-Dev-Prac\Sign-Language-to-Sentences\model\action.h5')
 
 colors = [(245, 117, 16), (117, 245, 16), (16, 117, 245)]
 

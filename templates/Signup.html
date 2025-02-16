@@ -27,6 +27,153 @@
   <!-- Main CSS File -->
   <link href="static/assets/css/main.css" rel="stylesheet">
 
+  <style>
+    /* Custom styles to enhance the signup form */
+    .signup-section {
+        background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 2.5rem;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        margin: 3rem auto;
+    }
+
+    .form-control {
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 10px;
+        padding: 12px 20px;
+        transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+        border-color: #4CAF50;
+        box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.25);
+        transform: translateY(-2px);
+    }
+
+    .form-label {
+        font-weight: 500;
+        color: #2c3e50;
+        margin-bottom: 0.5rem;
+        font-size: 0.95rem;
+    }
+
+    .btn-signup {
+        background: #4CAF50;
+        color: white;
+        padding: 12px 30px;
+        border-radius: 10px;
+        border: none;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .btn-signup:hover {
+        background: #45a049;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+    }
+
+    .page-title {
+        background: linear-gradient(45deg, #1a2f3a, #2c3e50);
+        padding: 4rem 0;
+        margin-bottom: 2rem;
+    }
+
+    .page-title h1 {
+        color: #ffffff;
+        font-size: 2.5rem;
+        font-weight: 600;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    .social-signup {
+        text-align: center;
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .social-signup p {
+        color: #666;
+        margin-bottom: 1rem;
+    }
+
+    .social-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+    }
+
+    .social-btn {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid #e0e0e0;
+        color: #666;
+        transition: all 0.3s ease;
+        font-size: 1.2rem;
+    }
+
+    .social-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .login-link {
+        text-align: center;
+        margin-top: 1.5rem;
+        color: #666;
+    }
+
+    .login-link a {
+        color: #4CAF50;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .login-link a:hover {
+        text-decoration: underline;
+    }
+
+    /* Password strength indicator */
+    .password-strength {
+        height: 4px;
+        margin-top: 0.5rem;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+    }
+
+    .password-strength-text {
+        font-size: 0.8rem;
+        margin-top: 0.5rem;
+        color: #666;
+    }
+
+    /* Form validation styles */
+    .form-control.is-valid {
+        border-color: #4CAF50;
+        padding-right: calc(1.5em + 0.75rem);
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%234CAF50' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right calc(0.375em + 0.1875rem) center;
+        background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+    }
+
+    .form-floating {
+        position: relative;
+        margin-bottom: 1.5rem;
+    }
+  </style>
     
 </head>
 
@@ -59,42 +206,59 @@
   </header>
 
   <main class="main">
-
-    <!-- Page Title -->
     <div class="page-title dark-background">
-      <div class="container position-relative">
-        <h1 class="col-6 offset-3">Signup for GestureGist</h1>
-      </div>
-    </div><!-- End Page Title -->
+        <div class="container position-relative">
+            <h1 class="text-center" data-aos="fade-up">Join GestureGist</h1>
+        </div>
+    </div>
 
-    <!-- Blog Posts Section -->
-    <div class="row mt-3">
-      
-      <div class="col-6 offset-3">
-      <form action="/user/signup" class="needs-validation" method="post" novalidate>
-              <div class="mb-3">
-                  <label for="username" class="form-label">Username</label>
-                  <input type="text" id="username" name="username" class="form-control" required>
-                  <div class="valid-feedback">Username Looks Good</div>
-                  <div class="invalid-feedback">Please enter a Username</div>
-              </div>
-              <div class="mb-3">
-                  <label for="email" class="form-label">Email</label>
-                  <input type="email" id="email" name="email" class="form-control" required>
-                  <div class="valid-feedback">Email Looks Good</div>
-                  <div class="invalid-feedback">Please enter a Email</div>
-              </div>
-              <div class="mb-3">
-                      <label for="password" class="form-label">Password</label>
-                      <input type="password" id="password" name="password" class="form-control" required>
-                      <div class="valid-feedback">password Looks Strong</div>
-                      <div class="invalid-feedback">Please enter a password</div>
-              </div>
-                  <button class="btn btn-success">Signup</button>
-          </form>
-      </div>
-  </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="signup-section" data-aos="fade-up" data-aos-delay="200">
+                    <form action="/user/signup" class="needs-validation" method="post" novalidate>
+                        <div class="form-floating mb-3">
+                            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required>
+                            <label for="username">Username</label>
+                            <div class="valid-feedback">Username looks good!</div>
+                            <div class="invalid-feedback">Please choose a username.</div>
+                        </div>
 
+                        <div class="form-floating mb-3">
+                            <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
+                            <label for="email">Email address</label>
+                            <div class="valid-feedback">Email looks good!</div>
+                            <div class="invalid-feedback">Please enter a valid email address.</div>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+                            <label for="password">Password</label>
+                            <div class="password-strength"></div>
+                            <div class="password-strength-text"></div>
+                            <div class="valid-feedback">Password is strong!</div>
+                            <div class="invalid-feedback">Please enter a strong password.</div>
+                        </div>
+
+                        <button type="submit" class="btn btn-signup">Create Account</button>
+                    </form>
+
+                    <div class="login-link">
+                        Already have an account? <a href="/login">Log in</a>
+                    </div>
+
+                    <div class="social-signup">
+                        <p>Or sign up with</p>
+                        <div class="social-buttons">
+                            <a href="#" class="social-btn"><i class="bi bi-google"></i></a>
+                            <a href="#" class="social-btn"><i class="bi bi-facebook"></i></a>
+                            <a href="#" class="social-btn"><i class="bi bi-apple"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
   </main>
 
   <footer id="footer" class="footer dark-background">
@@ -183,6 +347,71 @@
   <!-- Main JS File -->
   <script src="static/assets/js/main.js"></script>
 
+  <script>
+    // Password strength checker
+    document.getElementById('password').addEventListener('input', function(e) {
+        const password = e.target.value;
+        const strengthBar = document.querySelector('.password-strength');
+        const strengthText = document.querySelector('.password-strength-text');
+        
+        // Calculate strength
+        let strength = 0;
+        if(password.match(/[a-z]+/)) strength += 1;
+        if(password.match(/[A-Z]+/)) strength += 1;
+        if(password.match(/[0-9]+/)) strength += 1;
+        if(password.match(/[$@#&!]+/)) strength += 1;
+        if(password.length >= 8) strength += 1;
+
+        // Update UI
+        switch(strength) {
+            case 0:
+                strengthBar.style.width = '0%';
+                strengthBar.style.backgroundColor = '#ff4444';
+                strengthText.textContent = 'Very Weak';
+                break;
+            case 1:
+                strengthBar.style.width = '20%';
+                strengthBar.style.backgroundColor = '#ffa726';
+                strengthText.textContent = 'Weak';
+                break;
+            case 2:
+                strengthBar.style.width = '40%';
+                strengthBar.style.backgroundColor = '#ffeb3b';
+                strengthText.textContent = 'Fair';
+                break;
+            case 3:
+                strengthBar.style.width = '60%';
+                strengthBar.style.backgroundColor = '#66bb6a';
+                strengthText.textContent = 'Good';
+                break;
+            case 4:
+                strengthBar.style.width = '80%';
+                strengthBar.style.backgroundColor = '#43a047';
+                strengthText.textContent = 'Strong';
+                break;
+            case 5:
+                strengthBar.style.width = '100%';
+                strengthBar.style.backgroundColor = '#2e7d32';
+                strengthText.textContent = 'Very Strong';
+                break;
+        }
+    });
+
+    // Form validation
+    (function () {
+        'use strict'
+        const forms = document.querySelectorAll('.needs-validation')
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+                form.classList.add('was-validated')
+            }, false)
+        })
+    })()
+  </script>
 </body>
 
 </html>

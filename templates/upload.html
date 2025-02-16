@@ -1,38 +1,168 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Upload Video</title>
-    <style>
-      body { font-family: Arial, sans-serif; text-align: center; }
-      #detectionText {
-          margin-top: 10px;
-          font-size: 20px;
-          font-weight: bold;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Upload Your Video</h1>
-    {% if filename %}
-      <img id="uploadedVideo" src="{{ url_for('uploaded_stream', filename=filename) }}" width="640" height="480">
-      <div id="detectionText"></div>
-      <script>
-        function fetchDetectionText() {
-          fetch("{{ url_for('detection_text') }}")
-            .then(response => response.json())
-            .then(data => {
-              document.getElementById("detectionText").innerText = data.text;
-            });
-        }
-        setInterval(fetchDetectionText, 1000);
-      </script>
-    {% else %}
-      <form method="POST" action="{{ url_for('upload_video') }}" enctype="multipart/form-data">
-        <input type="file" name="video" accept="video/*" required>
-        <br><br>
-        <input type="submit" value="Upload">
-      </form>
-    {% endif %}
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Services - GestureGist</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="static/assets/img/favicon.png" rel="icon">
+  <link href="static/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="static/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="static/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="static/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="static/assets/css/main.css" rel="stylesheet">
+</head>
+
+<body class="services-page">
+  
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+      <a href="/" class="logo d-flex align-items-center">
+        <img src="static/assets/img/logo1.png" alt="">
+        <h1 class="sitename">GestureGist</h1>
+      </a>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/services" class="active">Services</a></li>
+          <li><a href="/team">Team</a></li>
+          <li><a href="/login">Login</a></li>
+          <li><a href="/signup">Signup</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="page-title dark-background">
+      <div class="container position-relative">
+        <h1>Upload Your Video</h1>
+        <p>Upload your video to analyze gestures and receive real-time detection results.</p>
+      </div>
+    </div>
+    
+    <section class="container mt-5 text-center">
+      {% if filename %}
+        <video id="uploadedVideo" width="640" height="480" controls>
+          <source src="{{ url_for('uploaded_stream', filename=filename) }}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <div id="detectionText" class="mt-3 fs-4 fw-bold"></div>
+        <script>
+          function fetchDetectionText() {
+            fetch("{{ url_for('detection_text') }}")
+              .then(response => response.json())
+              .then(data => {
+                document.getElementById("detectionText").innerText = data.text;
+              });
+          }
+          setInterval(fetchDetectionText, 1000);
+        </script>
+      {% else %}
+        <form method="POST" action="{{ url_for('upload_video') }}" enctype="multipart/form-data" class="mt-4">
+          <input type="file" name="video" accept="video/*" class="form-control w-50 mx-auto" required>
+          <br>
+          <button type="submit" class="btn btn-primary">Upload</button>
+        </form>
+      {% endif %}
+    </section>
+  </main>
+
+  <footer id="footer" class="footer dark-background">
+
+     
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-6 footer-about">
+          <a href="/" class="d-flex align-items-center">
+            <span class="sitename">GestureGist</span>
+          </a>
+          <div class="footer-contact pt-3">
+            <p>Vit Chennai</p>
+            <p>Chennai, India 600127</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>044 3993 1555</span></p>
+            <p><strong>Email:</strong> <span>info@example.com</span></p>
+          </div>
+        </div>
+  
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
+          </ul>
+        </div>
+  
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Live Video Translation</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Upload Video Sign Translation</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Real-Time Gesture Recognition</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">AI-Powered Sign Language Generation</a></li>
+  
+          </ul>
+        </div>
+  
+        <div class="col-lg-4 col-md-12">
+          <h4>Follow Us</h4>
+          <p>Stay connected and follow us to explore the art of gestures redefining the digital world.</p>
+          <div class="social-links d-flex">
+            <a href=""><i class="bi bi-twitter-x"></i></a>
+            <a href=""><i class="bi bi-facebook"></i></a>
+            <a href=""><i class="bi bi-instagram"></i></a>
+            <a href=""><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">GestureGist</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you've purchased the pro version. -->
+        <!-- Licensing information: https:// Team GG.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+        Designed by <a href="https:// Team GG.com/"> Team GG</a>
+      </div>
+    </div>
+  
+  </footer>
+  
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="static/assets/vendor/aos/aos.js"></script>
+  <script src="static/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="static/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="static/assets/js/main.js"></script>
+</body>
 </html>
